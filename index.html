@@ -366,7 +366,7 @@
         <h1>Security &amp; cloud<br>work, <span>documented</span>.</h1>
         <p class="hero-sub">
           I build and break things in my own lab so I understand them before I defend them —
-          <strong>SIEM detection engineering, AWS hardening, and vulnerability management</strong>,
+          <strong>full-stack security tooling, SIEM detection engineering, AWS hardening, and vulnerability management</strong>,
           each one written up the way I'd hand it off on a shift.
         </p>
         <div class="hero-actions">
@@ -385,10 +385,57 @@
             <div class="eyebrow" style="margin-bottom:10px;">Project Log</div>
             <h2>Case files</h2>
           </div>
-          <div class="section-count">5 CLOSED / ACTIVE — updated as new work ships</div>
+          <div class="section-count">6 CLOSED / ACTIVE — updated as new work ships</div>
         </div>
 
         <div class="cases">
+
+          <article class="case">
+            <div class="case-titlebar">
+              <div class="traffic-lights">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+              <div class="win-title">~/projects/vulntrack</div>
+              <div></div>
+            </div>
+            <div class="case-accent"></div>
+            <div class="case-body">
+              <div class="case-top-row">
+                <span class="case-category">CASE-01 · Full-Stack · Cloud · AppSec</span>
+                <span class="status-pill amber">Live on AWS</span>
+              </div>
+              <h3>VulnTrack — Vulnerability &amp; Asset Tracking Platform</h3>
+              <p>
+                A full-stack vulnerability and asset tracking web application built as a classic 3-tier Java stack
+                — Jakarta EE (JAX-RS + CDI) on WildFly, Hibernate, and PostgreSQL — with a full CRUD REST API tracking
+                assets, vulnerabilities, findings, and users. Secured with JWT authentication (bcrypt-hashed passwords,
+                signed tokens), a request filter validating every protected endpoint, and role-based access control
+                (ADMIN vs. ANALYST). The entire AWS environment is provisioned as code with Terraform — a two-AZ VPC,
+                tier-scoped security groups (ALB → ECS → RDS), RDS PostgreSQL, ECS Fargate, an Application Load Balancer,
+                and Secrets Manager — and deployed automatically by a GitHub Actions CI/CD pipeline authenticated via
+                OIDC, with no stored AWS credentials. Verified live end-to-end on real AWS infrastructure, with a
+                detailed troubleshooting log (OIDC trust-policy debugging via CloudTrail, IAM least-privilege iteration,
+                WildFly datasource configuration, and more) kept as part of the write-up.
+              </p>
+              <div class="stack-row">
+                <span class="chip">Java 17</span><span class="chip">Jakarta EE 10</span><span class="chip">WildFly</span>
+                <span class="chip">Hibernate</span><span class="chip">PostgreSQL</span><span class="chip">JWT + bcrypt</span>
+                <span class="chip">RBAC</span><span class="chip">Docker</span><span class="chip">Terraform</span>
+                <span class="chip">AWS ECS Fargate</span><span class="chip">RDS</span><span class="chip">ALB</span>
+                <span class="chip">Secrets Manager</span><span class="chip">GitHub Actions (OIDC)</span>
+              </div>
+              <div class="shot-single">
+                <figure>
+                  <img src="https://github.com/DevinCodes13/vulntrack/raw/main/docs/screenshots/17-dashboard-LIVE-AWS-hero-shot.png" alt="The VulnTrack findings dashboard running live on AWS — WildFly on ECS Fargate, PostgreSQL on RDS, behind an Application Load Balancer, deployed by GitHub Actions" loading="lazy">
+                  <figcaption>The findings dashboard, live on AWS — WildFly on ECS Fargate, Postgres on RDS, behind an ALB</figcaption>
+                </figure>
+              </div>
+              <div class="case-footer">
+                <a class="repo-link" href="https://github.com/DevinCodes13/vulntrack" target="_blank" rel="noopener">View repo</a>
+                <a class="repo-link" href="https://github.com/DevinCodes13/vulntrack#readme" target="_blank" rel="noopener">Read the full write-up</a>
+              </div>
+            </div>
+          </article>
 
           <article class="case">
             <div class="case-titlebar">
@@ -401,7 +448,7 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-01 · Cloud Security · AWS</span>
+                <span class="case-category">CASE-02 · Cloud Security · AWS</span>
                 <span class="status-pill cyan">Hardened</span>
               </div>
               <h3>AWS Cloud Security Hardening</h3>
@@ -444,7 +491,7 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-02 · SIEM · Detection Engineering</span>
+                <span class="case-category">CASE-03 · SIEM · Detection Engineering</span>
                 <span class="status-pill cyan">Operational</span>
               </div>
               <h3>Home SOC Lab</h3>
@@ -487,7 +534,7 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-03 · Vulnerability Management</span>
+                <span class="case-category">CASE-04 · Vulnerability Management</span>
                 <span class="status-pill cyan">0 Findings on Rescan</span>
               </div>
               <h3>Vulnerability Management Workflow</h3>
@@ -525,7 +572,7 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-04 · Security Automation · Tooling</span>
+                <span class="case-category">CASE-05 · Security Automation · Tooling</span>
                 <span class="status-pill cyan">Complete</span>
               </div>
               <h3>Phishing Triage Helper</h3>
@@ -568,7 +615,7 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-05 · Tooling · Documentation</span>
+                <span class="case-category">CASE-06 · Tooling · Documentation</span>
                 <span class="status-pill cyan">Complete</span>
               </div>
               <h3>LabScribe</h3>
