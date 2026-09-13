@@ -366,7 +366,7 @@
         <h1>Security &amp; cloud<br>work, <span>documented</span>.</h1>
         <p class="hero-sub">
           I build and break things in my own lab so I understand them before I defend them —
-          <strong>full-stack security tooling, SIEM detection engineering, AWS hardening, and vulnerability management</strong>,
+          <strong>full-stack security tooling on Kubernetes, SIEM detection engineering, AWS hardening, and vulnerability management</strong>,
           each one written up the way I'd hand it off on a shift.
         </p>
         <div class="hero-actions">
@@ -401,8 +401,8 @@
             <div class="case-accent"></div>
             <div class="case-body">
               <div class="case-top-row">
-                <span class="case-category">CASE-01 · Full-Stack · Cloud · AppSec</span>
-                <span class="status-pill amber">Live on AWS</span>
+                <span class="case-category">CASE-01 · Full-Stack · Kubernetes · Cloud · AppSec</span>
+                <span class="status-pill amber">Live · HTTPS on real domain</span>
               </div>
               <h3>VulnTrack — Vulnerability &amp; Asset Tracking Platform</h3>
               <p>
@@ -410,24 +410,32 @@
                 — Jakarta EE (JAX-RS + CDI) on WildFly, Hibernate, and PostgreSQL — with a full CRUD REST API tracking
                 assets, vulnerabilities, findings, and users. Secured with JWT authentication (bcrypt-hashed passwords,
                 signed tokens), a request filter validating every protected endpoint, and role-based access control
-                (ADMIN vs. ANALYST). The entire AWS environment is provisioned as code with Terraform — a two-AZ VPC,
-                tier-scoped security groups (ALB → ECS → RDS), RDS PostgreSQL, ECS Fargate, an Application Load Balancer,
-                and Secrets Manager — and deployed automatically by a GitHub Actions CI/CD pipeline authenticated via
-                OIDC, with no stored AWS credentials. Verified live end-to-end on real AWS infrastructure, with a
-                detailed troubleshooting log (OIDC trust-policy debugging via CloudTrail, IAM least-privilege iteration,
-                WildFly datasource configuration, and more) kept as part of the write-up.
+                (ADMIN vs. ANALYST). The AWS environment is fully provisioned as code with Terraform and deployed by a
+                GitHub Actions CI/CD pipeline authenticated via OIDC (no stored credentials).
+              </p>
+              <p>
+                Then deliberately built <strong>a second time</strong> to demonstrate range: re-architected from ECS
+                Fargate onto <strong>EKS (Kubernetes)</strong> with an <strong>Istio service mesh enforcing STRICT
+                mutual TLS</strong> between pods, fully automated DNS (ExternalDNS + Route53), real
+                <strong>Let's Encrypt TLS</strong> via cert-manager, and an <strong>AWS WAF</strong> — running live over
+                HTTPS on a real domain (<code>aws.vulntrack.app</code>). The write-up keeps a detailed troubleshooting log:
+                debugging OIDC trust policies via CloudTrail, solving Kubernetes pod-density limits with VPC CNI prefix
+                delegation, diagnosing silent node-group rollbacks from complete logs, and separating AWS IAM from
+                in-cluster Kubernetes RBAC.
               </p>
               <div class="stack-row">
                 <span class="chip">Java 17</span><span class="chip">Jakarta EE 10</span><span class="chip">WildFly</span>
                 <span class="chip">Hibernate</span><span class="chip">PostgreSQL</span><span class="chip">JWT + bcrypt</span>
                 <span class="chip">RBAC</span><span class="chip">Docker</span><span class="chip">Terraform</span>
-                <span class="chip">AWS ECS Fargate</span><span class="chip">RDS</span><span class="chip">ALB</span>
-                <span class="chip">Secrets Manager</span><span class="chip">GitHub Actions (OIDC)</span>
+                <span class="chip">AWS EKS (Kubernetes)</span><span class="chip">ECS Fargate</span><span class="chip">Istio (mTLS)</span>
+                <span class="chip">cert-manager / Let's Encrypt</span><span class="chip">ExternalDNS</span><span class="chip">AWS WAF</span>
+                <span class="chip">RDS</span><span class="chip">ALB</span><span class="chip">Secrets Manager</span>
+                <span class="chip">GitHub Actions (OIDC)</span>
               </div>
               <div class="shot-single">
                 <figure>
-                  <img src="https://github.com/DevinCodes13/vulntrack/raw/main/docs/screenshots/17-dashboard-LIVE-AWS-hero-shot.png" alt="The VulnTrack findings dashboard running live on AWS — WildFly on ECS Fargate, PostgreSQL on RDS, behind an Application Load Balancer, deployed by GitHub Actions" loading="lazy">
-                  <figcaption>The findings dashboard, live on AWS — WildFly on ECS Fargate, Postgres on RDS, behind an ALB</figcaption>
+                  <img src="https://github.com/DevinCodes13/vulntrack/raw/main/docs/screenshots/p5-25-polished-frontend-live-HERO.png" alt="The VulnTrack findings dashboard served over HTTPS from aws.vulntrack.app — running on an EKS Kubernetes cluster behind an Istio service mesh with mutual TLS, a Let's Encrypt certificate, and an AWS WAF" loading="lazy">
+                  <figcaption>Live over HTTPS on <code>aws.vulntrack.app</code> — EKS + Istio service mesh (mTLS), Let's Encrypt TLS, behind an AWS WAF</figcaption>
                 </figure>
               </div>
               <div class="case-footer">
