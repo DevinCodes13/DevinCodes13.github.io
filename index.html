@@ -385,7 +385,7 @@
             <div class="eyebrow" style="margin-bottom:10px;">Project Log</div>
             <h2>Case files</h2>
           </div>
-          <div class="section-count">6 CLOSED / ACTIVE — updated as new work ships</div>
+          <div class="section-count">8 CLOSED / ACTIVE — updated as new work ships</div>
         </div>
 
         <div class="cases">
@@ -402,7 +402,7 @@
             <div class="case-body">
               <div class="case-top-row">
                 <span class="case-category">CASE-01 · Full-Stack · Kubernetes · Cloud · AppSec</span>
-                <span class="status-pill amber">Live · HTTPS on real domain</span>
+                <span class="status-pill amber">Deployed &amp; verified · AWS torn down to save cost</span>
               </div>
               <h3>VulnTrack — Vulnerability &amp; Asset Tracking Platform</h3>
               <p>
@@ -423,6 +423,13 @@
                 delegation, diagnosing silent node-group rollbacks from complete logs, and separating AWS IAM from
                 in-cluster Kubernetes RBAC.
               </p>
+              <p>
+                Later phases added a reproducible Vagrant dev box, Terraform state in a versioned S3 backend with locking,
+                a full documented EKS rebuild runbook, and a security-hardening pass: a customer-managed KMS key,
+                EBS and RDS encryption, S3 state-bucket hardening, expanded WAF rules, a container base image moved off an
+                end-of-life OS, and SELinux/auditd on the nodes. The environment is torn down between demos to keep AWS
+                spend low (teardown ~15–20 min, rebuild ~30–35 min), so the screenshots and write-up are the record of the live run.
+              </p>
               <div class="stack-row">
                 <span class="chip">Java 17</span><span class="chip">Jakarta EE 10</span><span class="chip">WildFly</span>
                 <span class="chip">Hibernate</span><span class="chip">PostgreSQL</span><span class="chip">JWT + bcrypt</span>
@@ -430,12 +437,12 @@
                 <span class="chip">AWS EKS (Kubernetes)</span><span class="chip">ECS Fargate</span><span class="chip">Istio (mTLS)</span>
                 <span class="chip">cert-manager / Let's Encrypt</span><span class="chip">ExternalDNS</span><span class="chip">AWS WAF</span>
                 <span class="chip">RDS</span><span class="chip">ALB</span><span class="chip">Secrets Manager</span>
-                <span class="chip">GitHub Actions (OIDC)</span>
+                <span class="chip">GitHub Actions (OIDC)</span><span class="chip">KMS</span><span class="chip">Vagrant</span>
               </div>
               <div class="shot-single">
                 <figure>
                   <img src="https://github.com/DevinCodes13/vulntrack/raw/main/docs/screenshots/p5-25-polished-frontend-live-HERO.png" alt="The VulnTrack findings dashboard served over HTTPS from aws.vulntrack.app — running on an EKS Kubernetes cluster behind an Istio service mesh with mutual TLS, a Let's Encrypt certificate, and an AWS WAF" loading="lazy">
-                  <figcaption>Live over HTTPS on <code>aws.vulntrack.app</code> — EKS + Istio service mesh (mTLS), Let's Encrypt TLS, behind an AWS WAF</figcaption>
+                  <figcaption>Captured live over HTTPS on <code>aws.vulntrack.app</code> — EKS + Istio service mesh (mTLS), Let's Encrypt TLS, behind an AWS WAF</figcaption>
                 </figure>
               </div>
               <div class="case-footer">
@@ -652,6 +659,60 @@
               </div>
               <div class="case-footer">
                 <a class="repo-link" href="https://github.com/DevinCodes13/LabScribe" target="_blank" rel="noopener">View repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-titlebar">
+              <div class="traffic-lights">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+              <div class="win-title">~/projects/cloud-detection-response</div>
+              <div></div>
+            </div>
+            <div class="case-accent"></div>
+            <div class="case-body">
+              <div class="case-top-row">
+                <span class="case-category">CASE-07 · Cloud Security · Detection &amp; Response</span>
+                <span class="status-pill cyan">Phases 1–2 complete · Zero Trust in progress</span>
+              </div>
+              <h3>Cloud Detection &amp; Automated Response</h3>
+              <p>
+                An AWS detection-and-response pipeline built entirely in Terraform: baseline telemetry first, then automated containment wired to GuardDuty findings through EventBridge into Lambda. Automated responses isolate a compromised EC2 instance, disable an exposed access key, and re-lock a public S3 bucket. Measured detection-to-containment on a live finding at under two minutes. A Zero Trust hardening phase is underway, and documentation follows the same format as VulnTrack.
+              </p>
+              <div class="stack-row">
+                <span class="chip">AWS GuardDuty</span><span class="chip">EventBridge</span><span class="chip">Lambda</span><span class="chip">Terraform</span><span class="chip">IAM</span><span class="chip">S3</span><span class="chip">Incident Response</span>
+              </div>
+              <div class="case-footer">
+                <a class="repo-link" href="https://github.com/DevinCodes13/cloud-detection-response" target="_blank" rel="noopener">View repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-titlebar">
+              <div class="traffic-lights">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+              <div class="win-title">~/projects/sop-to-workflow-automator</div>
+              <div></div>
+            </div>
+            <div class="case-accent"></div>
+            <div class="case-body">
+              <div class="case-top-row">
+                <span class="case-category">CASE-08 · Automation · Full-Stack · AI</span>
+                <span class="status-pill cyan">Phases 0–3 complete · FHIR integration next</span>
+              </div>
+              <h3>SOP-to-Workflow Automator</h3>
+              <p>
+                A React/TypeScript and Python application that takes a written standard operating procedure and turns it into a structured, runnable workflow using the Claude API. Built in phases from customer discovery through authentication, roles and API keys, and SOP parsing. Used for real at a barber school to automate client intake: an early measurement shows intake time cut by about 50%, saving staff roughly 4 hours per week. Next up is FHIR integration and a workflow runner.
+              </p>
+              <div class="stack-row">
+                <span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">Claude API</span><span class="chip">REST API</span><span class="chip">RBAC</span>
+              </div>
+              <div class="case-footer">
+                <span class="note-flag">Repo link coming soon</span>
               </div>
             </div>
           </article>
